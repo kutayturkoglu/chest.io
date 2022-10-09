@@ -1,0 +1,1 @@
+python3 main.py & cd tailwind;npm start

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+form {
+    background-image: url("logo.jpg");
+}
+input.form-control1{
+    border-radius: 10px;
+    width: 80%;
+    padding: 2%;
+    align-items: left;
+}
+input.form-control{
+    border-radius: 10px;
+    width: 80%;
+    padding: 2%;
+    margin-top: 20px;
+    align-items: left;
+}
+
+img.img-fluid{
+    width: 20%;
+    height: 20%;
+}
+

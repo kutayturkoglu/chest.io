@@ -1,0 +1,17 @@
+{
+  "name": "tailwind",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "PORT=3001 tailwindcss -i ./style.css -o ../static/css/tailwind.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.12",
+    "clean-css-cli": "^5.6.1",
+    "postcss": "^8.4.17",
+    "tailwindcss": "^3.1.8"
+  }
+}
