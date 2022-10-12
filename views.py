@@ -1,6 +1,8 @@
 from flask import render_template, request
 from app import app
 from flask_sqlalchemy import SQLAlchemy
+from datetime import date
+import os
 
 app.config['SQLALCHEMY_DATABASE_URI']='mysql://kutay:448255@localhost/chest'
 
@@ -27,3 +29,12 @@ def diary():
 @app.route('/signup', methods=(['GET','POST']))
 def signup():
     return render_template('signup.html')
+
+@app.route('/redirect', methods=(['GET','POST']))
+def redirect():
+    username=request.form['user_name']
+    password=request.form['user_pw']
+    email=request.form['user_email']
+    user_id=os.getuid()
+    print(username, password, email, user_id)
+    return render_template('redirect.html')

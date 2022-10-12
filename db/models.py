@@ -1,14 +1,14 @@
-import mysql.connector
+# import mysql.connector
 
-conn = mysql.connector.connect(
-    host='localhost',
-    user='kutay',
-    password='pwd123321!',
-    auth_plugin='mysql_native_password',
-    database='chest'
-)
+# conn = mysql.connector.connect(
+#     host='localhost',
+#     user='kutay',
+#     password='pwd123321!',
+#     auth_plugin='mysql_native_password',
+#     database='chest'
+# )
 
-cursor = conn.cursor()
+# cursor = conn.cursor()
 
 """
     Create and test database
@@ -27,15 +27,15 @@ cursor = conn.cursor()
 # cursor.execute("""CREATE TABLE User 
 #                (user_name VARCHAR(50) NOT NULL UNIQUE, 
 #                user_email VARCHAR(50) NOT NULL UNIQUE, 
-#                user_pw VARCHAR(50) NOT NULL UNIQUE, 
-#                user_id VARCHAR(50) PRIMARY KEY NOT NULL UNIQUE)
+#                user_pw VARCHAR(50) NOT NULL, 
+#                user_id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY)
 #                """)
 
 # cursor.execute("""CREATE TABLE Diary 
 #                (diary_date DATE NOT NULL, 
 #                user_id VARCHAR(50) NOT NULL, 
 #                content VARCHAR(1000) NOT NULL, 
-#                diary_id VARCHAR(50) PRIMARY KEY NOT NULL UNIQUE)
+#                diary_id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY)
 #                """)
 
 # cursor.execute("""CREATE TABLE Reminder 
@@ -43,7 +43,7 @@ cursor = conn.cursor()
 #                    reminder_header VARCHAR(50) NOT NULL,
 #                    user_id VARCHAR(50) NOT NULL,
 #                    date_to_be DATETIME NOT NULL,
-#                    reminder_id VARCHAR(50) PRIMARY KEY NOT NULL UNIQUE
+#                    reminder_id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY
 #                )
 #                """)
 
@@ -53,6 +53,6 @@ cursor = conn.cursor()
 #                     user_id VARCHAR(50) NOT NULL,
 #                     blog_content VARCHAR(1000) NOT NULL,
 #                     blog_date DATE NOT NULL,
-#                     blog_id VARCHAR(50) PRIMARY KEY NOT NULL UNIQUE   
+#                     blog_id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY
 #                 )
 #             """)
