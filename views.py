@@ -1,7 +1,6 @@
 from flask import render_template, request
 from matplotlib import use
 from app import app, mysql
-from flask_sqlalchemy import SQLAlchemy
 from datetime import date
 
 @app.route('/')
@@ -10,7 +9,25 @@ def index():
 
 @app.route('/personal', methods=(['GET','POST']))
 def personal():
-    return render_template('personal.html')
+    email=request.form['email']
+    password=request.form['password']
+    cur=mysql.connection.cursor()
+    try:
+        cur.execute("SELECT user_pw FROM User WHERE user_email=%s",(email,))
+        pw=cur.execute("SELECT user_pw FROM User WHERE user_email=%s",(email,))
+        pw=cur.fetchall()
+        print(pw[0][0])
+        if(pw[0][0]==password):
+            username=cur.execute("SELECT user_name FROM User WHERE user_email=%s",(email,))
+            username=cur.fetchall()
+            return render_template('personal.html', user_name=username[0][0])
+        else:
+            hed='<h1>This is the wrong password'
+            return (hed)
+    except:
+        hed='<h1>This email adress is not registered.'
+        return (hed) 
+    
 
 @app.route('/blog', methods=(['GET','POST']))
 def blog():
@@ -34,7 +51,18 @@ def redirect():
     password=request.form['user_pw']
     email=request.form['user_email']
     cur=mysql.connection.cursor()
-    cur.execute("INSERT INTO User(user_name,user_email,user_pw) VALUES(%s,%s,%s)", (username,email,password))
+    try:
+        cur.execute("INSERT INTO User(user_name) VALUES(%s)", (username))
+    except Exception as e:
+        hed='<h1>This user name is taken before'
+        return (hed) 
+    try:
+        cur.execute("INSERT INTO User(user_email) VALUES(%s)", (email))
+    except Exception as e:
+        hed='<h1>This email is used before'
+        return (hed) 
+    
+    cur.execute("INSERT INTO User(user_pw) VALUES(%s)", (password))
     mysql.connection.commit()
     cur.close()
     return render_template('redirect.html')
