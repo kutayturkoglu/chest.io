@@ -1,0 +1,4 @@
+mysql_host: 'localhost'
+mysql_user: 'kutay'
+mysql_password: 'pwd123321!'
+mysql_db: 'chest'

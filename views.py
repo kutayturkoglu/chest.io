@@ -1,10 +1,8 @@
 from flask import render_template, request
-from app import app
+from matplotlib import use
+from app import app, mysql
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
-import os
-
-app.config['SQLALCHEMY_DATABASE_URI']='mysql://kutay:448255@localhost/chest'
 
 @app.route('/')
 def index():
@@ -35,6 +33,8 @@ def redirect():
     username=request.form['user_name']
     password=request.form['user_pw']
     email=request.form['user_email']
-    user_id=os.getuid()
-    print(username, password, email, user_id)
+    cur=mysql.connection.cursor()
+    cur.execute("INSERT INTO User(user_name,user_email,user_pw) VALUES(%s,%s,%s)", (username,email,password))
+    mysql.connection.commit()
+    cur.close()
     return render_template('redirect.html')
