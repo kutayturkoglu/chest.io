@@ -28,6 +28,9 @@ def personal():
         hed='<h1>This email adress is not registered.'
         return (hed) 
     
+@app.route('/personal1', methods=(['GET','POST']))
+def personal1():
+    return render_template('personal.html')
 
 @app.route('/blog', methods=(['GET','POST']))
 def blog():
